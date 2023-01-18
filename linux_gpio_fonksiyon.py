@@ -261,12 +261,18 @@ if __name__ == '__main__':
         # print(basariDurumu);
 
 ################################ pin yazma
+    # gecikme=0.033 # saniyede 30 frame
+    # gecikme=0.025 # saniyede 40 frame
+    # gecikme=0.016 # saniyede 60 frame
+    gecikme=0.010 # saniyede 100 frame
 
     lojik='0'
     while True:
     
         thread_1_gorev_ver('echo ' + lojik + ' >  /sys/class/gpio/gpio' + str(kizilotesi_Linux_GPIO_pin) + '/value',python_ile_oku_yaz=True)  # yazma python_ile_oku_yaz=True ise saniyede en fazla 2200 kez (bu değeri elde etmek için; sonsuz döngüde ekrana yazı bastırma kapatılmalı ) ;   python_ile_oku_yaz=False ise saniyede en fazla   304       (işlemci ortalama kullanımı %29)
         thread_1_tetik_2.wait();thread_1_tetik_2.clear()
+
+        time.sleep(gecikme/2)
 
         if lojik=='1':
             lojik='0' ;
@@ -276,12 +282,7 @@ if __name__ == '__main__':
         thread_1_gorev_ver('echo ' + lojik + ' >  /sys/class/gpio/gpio' + str(kirmizi_Linux_GPIO_pin) + '/value',python_ile_oku_yaz=True)  # yazma python_ile_oku_yaz=True ise saniyede en fazla 2200 kez (bu değeri elde etmek için; sonsuz döngüde ekrana yazı bastırma kapatılmalı ) ;   python_ile_oku_yaz=False ise saniyede en fazla   304       (işlemci ortalama kullanımı %29)
         thread_1_tetik_2.wait();thread_1_tetik_2.clear()
 
-        # time.sleep(1)
-
-        # time.sleep(0.033) # saniyede 30 frame
-        # time.sleep(0.025) # saniyede 40 frame
-        # time.sleep(0.016) # saniyede 60 frame
-        time.sleep(0.010) # saniyede 100 frame
+        time.sleep(gecikme/2)
 
 
 
